@@ -1,0 +1,15 @@
+exportPattern("^[[:alpha:]]+")
+
+S3method(coef, GNARfit)
+S3method(fitted, GNARfit)
+S3method(print, GNARfit)
+S3method(residuals, GNARfit)
+S3method(summary, GNARfit)
+S3method(plot, GNARnet)
+S3method(print, GNARnet)
+S3method(summary, GNARnet)
+
+import(igraph)
+importFrom("graphics", "plot")
+importFrom("stats", "as.ts", "coef", "lm", "rbinom", "residuals", "rnorm", "runif", "ts", "tsp")
+

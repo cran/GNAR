@@ -1,0 +1,21 @@
+Package: GNAR
+Type: Package
+Title: Methods for Fitting Network Time Series Models
+Version: 0.2.7
+Date: 2018-09-16
+Author: Kathryn Leeming [aut],
+  Guy Nason [aut],
+  Matt Nunes [aut, cre],
+  Marina Knight [ctb]
+Authors@R: c(person("Kathryn", "Leeming", role="aut"), person("Guy","Nason",role="aut"), person("Matt",
+        "Nunes", role=c("aut","cre"),email="nunesrpackages@gmail.com"), person("Marina","Knight",role="ctb"))
+Maintainer: Matt Nunes <nunesrpackages@gmail.com>
+Description: Simulation of, and fitting models for, Generalised Network Autoregressive (GNAR) time series models which take account of network structure.  Such models are described in Knight et al. (2016), see <arXiv:1603.03221>.
+Depends: igraph
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+NeedsCompilation: no
+Packaged: 2018-09-16 10:19:53 UTC; matt
+Repository: CRAN
+Date/Publication: 2018-09-24 23:10:20 UTC
