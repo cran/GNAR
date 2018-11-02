@@ -1,5 +1,5 @@
 GNARpredict <- function(vts=GNAR::fiveVTS, net=GNAR::fiveNet, alphaOrder=2, betaOrder=c(1,1), fact.var=NULL,
-                        globalalpha=TRUE, tvnets=NULL, netsstart=NULL){
+                        globalalpha=TRUE, tvnets=NULL, netsstart=NULL, ErrorIfNoNei=TRUE){
   #the last row of vts will be predicted
   #input checks
   stopifnot(is.GNARnet(net))
@@ -32,6 +32,13 @@ GNARpredict <- function(vts=GNAR::fiveVTS, net=GNAR::fiveNet, alphaOrder=2, beta
                 globalalpha=globalalpha, xtsp=tsp(vts))
   dmat <- GNARdesign(vts=vts, net=net, alphaOrder=alphaOrder, betaOrder=betaOrder, fact.var=fact.var,
                      globalalpha=globalalpha, tvnets=tvnets, netsstart=netsstart)
+  if(ErrorIfNoNei){
+    if(any(apply(dmat==0, 2, all))){
+      parname <- strsplit(names(which(apply(dmat==0, 2, all)))[1], split=NULL)[[1]]
+      betastage <- parname[(which(parname==".")+1) :(length(parname))]
+      stop("beta order too large for network, use max neighbour set smaller than ", betastage)
+    }
+  }
 
   predt <- nrow(vts)-alphaOrder
   yvec <- NULL
@@ -69,12 +76,21 @@ GNARpredict <- function(vts=GNAR::fiveVTS, net=GNAR::fiveNet, alphaOrder=2, beta
 
   #use only significant parameters in fit
   coef.locs <- function(mod){
+    #accomodate NAs in coefficients
+    nas <- is.na(mod$coefficients)
     pvs <- summary(mod)$coefficients[,4] < 0.05
-    return(pvs)
+    if(all(!nas)){
+      return(pvs)
+    }else{
+      out <- !nas
+      out[out] <- pvs
+      return(out)
+    }
+    
   }
 
   use.coef <- coef.locs(modNoIntercept)
-  dmat.pred <- dmat.pred[,!is.na(modNoIntercept$coefficients)]
+  #dmat.pred <- dmat.pred
 
   if(is.vector(dmat.pred)){
     dmat.pred <- matrix(dmat.pred, ncol=1)

@@ -3,7 +3,7 @@
 \title{Fitting function for GNAR models}
 \usage{
 GNARfit(vts=GNAR::fiveVTS, net=GNAR::fiveNet, alphaOrder=2, betaOrder=c(1,1),
- fact.var=NULL, globalalpha=TRUE, tvnets=NULL, netsstart=NULL)
+ fact.var=NULL, globalalpha=TRUE, tvnets=NULL, netsstart=NULL, ErrorIfNoNei=TRUE)
 }
 \description{
 Fits the GNAR model to the given inputs using \code{GNARdesign} and \code{lm}.
@@ -17,6 +17,7 @@ Fits the GNAR model to the given inputs using \code{GNARdesign} and \code{lm}.
 \item{globalalpha}{a TRUE/FALSE value indivating whether to use global alpha parameters.}
 \item{tvnets}{a list of additional networks. Currently only NULL (the static network case) is supported.}
 \item{netsstart}{a vector of times corresponding to the first time points for each network of \code{tvnets}. Currently only NULL (the static network case) is supported.}
+\item{ErrorIfNoNei}{a TRUE/FALSE value indicating whether to stop the function call with an error if betaOrder specifies more neighbour sets than exist in the network. If FALSE the function will continue and some parameters will be NA.}
 }
 \details{
 The GNAR model of order \eqn{(p,S)}{(p,S)} is defined as

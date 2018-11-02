@@ -10,6 +10,7 @@ S3method(print, GNARnet)
 S3method(summary, GNARnet)
 
 import(igraph)
+importFrom("wordcloud", "wordlayout")
 importFrom("graphics", "plot")
 importFrom("stats", "as.ts", "coef", "lm", "rbinom", "residuals", "rnorm", "runif", "ts", "tsp")
 

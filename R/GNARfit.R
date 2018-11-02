@@ -1,5 +1,5 @@
 GNARfit <- function(vts=GNAR::fiveVTS, net=GNAR::fiveNet, alphaOrder=2, betaOrder=c(1,1), fact.var=NULL,
-                    globalalpha=TRUE, tvnets=NULL, netsstart=NULL){
+                    globalalpha=TRUE, tvnets=NULL, netsstart=NULL, ErrorIfNoNei=TRUE){
   #input checks
   stopifnot(is.GNARnet(net))
   stopifnot(ncol(vts) == length(net$edges))
@@ -31,6 +31,13 @@ GNARfit <- function(vts=GNAR::fiveVTS, net=GNAR::fiveNet, alphaOrder=2, betaOrde
                 globalalpha=globalalpha, xtsp=tsp(vts))
   dmat <- GNARdesign(vts=vts, net=net, alphaOrder=alphaOrder, betaOrder=betaOrder, fact.var=fact.var,
                      globalalpha=globalalpha, tvnets=tvnets, netsstart=netsstart)
+  if(ErrorIfNoNei){
+    if(any(apply(dmat==0, 2, all))){
+      parname <- strsplit(names(which(apply(dmat==0, 2, all)))[1], split=NULL)[[1]]
+      betastage <- parname[(which(parname==".")+1) :(length(parname))]
+      stop("beta order too large for network, use max neighbour set smaller than ", betastage)
+    }
+  }
   predt <- nrow(vts)-alphaOrder
   yvec <- NULL
   for(ii in 1:length(net$edges)){
