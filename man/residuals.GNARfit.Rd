@@ -8,7 +8,7 @@
 \code{residuals.GNARfit} returns the residuals of a GNARfit object as a matrix.
 }
 \arguments{
-\item{object}{the output of a GNARfit or GNARpredict call}
+\item{object}{the output of a \link[GNAR]{GNARfit} call}
 \item{...}{additional arguments, unused here.}
 }
 \details{
@@ -19,6 +19,5 @@ The function first checks if the object is of GNARfit class, then uses \link[GNA
 }
 \examples{
 #get the residuals of the fiveNode GNAR fit
-data(fiveNode)
 residuals(GNARfit())
 }

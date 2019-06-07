@@ -1,14 +1,16 @@
 \name{fiveNode}
 \alias{fiveNode}
+\alias{fiveVTS}
+\alias{fiveNet}
 \docType{data}
 \title{
 Example Network Time Series
 }
 \description{
-A multivariate time series \link[GNAR]{fiveVTS} and corresponding network \link[GNAR]{fiveNet}.
+A multivariate time series \code{fiveVTS} and corresponding network \code{fiveNet}.
 }
 \usage{data("fiveNode")}
-\format{ This dataset contains two R objects:\cr 
+\format{ This dataset contains two R objects:\cr
 \code{fiveVTS} is a \link[stats]{ts} object with a matrix of 200 rows (t=200) and 5 columns (n=5)
 \code{fiveNet} is a GNARnet object containing \code{$edges} and \code{$dist}. \cr
 \code{edges} is a list of length five, with \code{edges[[i]]} containing the vertices that node i is connected to. \cr
@@ -25,7 +27,6 @@ A multivariate time series \link[GNAR]{fiveVTS} and corresponding network \link[
 %%  ~~ possibly secondary sources and usages ~~
 %}
 \examples{
-data(fiveNode)
 plot(fiveNet)
 image(fiveVTS)
 }

@@ -1,2 +1,8 @@
 0.2.8:	Added in vswind data set and windnetplot function to plot wind network
 	(by GPN)
+
+0.3.0: Added S3 methods: AIC, BIC, nobs, predict, simulate, vcov. Removed lmToBIC.
+0.3.1: Corrected predict function
+0.3.2: Added S3 method logLik
+0.3.3: Removed GNARpredict and uses in other functions/help pages. Added warnings to S3 methods where additional arguments (...) are ignored.
+0.3.4: Changed NAMESPACE to export non-S3 functions

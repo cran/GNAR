@@ -16,7 +16,7 @@ Wind Speed example network time series
 	and the coordinates of the weather stations.
 }
 \usage{data("vswind")}
-\format{ This dataset contains six R objects:\cr 
+\format{ This dataset contains six R objects:\cr
 \code{vswindts} is a \link[stats]{ts} object with a matrix of 721 rows (t=721) and 102 columns (n=102). This corresponds to 721 observations made through time at
 102 weather stations.
 \code{vswindnetD} is a \code{GNARnet}
@@ -47,7 +47,6 @@ two columns providing the x and y coordinates of the weather stations.
 %}
 \seealso{\code{\link{windnetplot}}}
 \examples{
-data(vswind)
 #
 # The name entry for Bristol
 #

@@ -1,4 +1,4 @@
-residToMat <- function(GNARobj=GNARpredict(), nnodes=5){
+residToMat <- function(GNARobj=GNARfit(), nnodes=5){
   #allow either a fit or a predict output here
   #fit will have $y, predict will have $ys components
   stopifnot(floor(nnodes)==nnodes)

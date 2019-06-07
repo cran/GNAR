@@ -16,6 +16,5 @@ S3 method for class "GNARnet".
 }
 \examples{
 #print fiveNet summary information
-data(fiveNode)
-summary.GNARnet(fiveNet)
+summary(fiveNet)
 }

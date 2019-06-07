@@ -30,7 +30,6 @@ The \code{as.GNARnet} function converts \link[igraph]{igraph} objects to GNARnet
 }
 \examples{
 #check that the example network meets the criteria above
-data(fiveNode)
 is.GNARnet(fiveNet)
 
 #convert to igraph and back again

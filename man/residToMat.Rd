@@ -1,14 +1,14 @@
 \name{residToMat}
 \alias{residToMat}
-\title{Converts the output of a GNARfit or GNARpredict to fitted and residual value matrices}
+\title{Converts the output of a GNARfit call to fitted and residual value matrices}
 \usage{
-residToMat(GNARobj=GNARpredict(), nnodes=5)
+residToMat(GNARobj=GNARfit(), nnodes=5)
 }
 \description{
-Unstacks the entries of the GNARfit or GNARpredict fitted and residual values to return matrices of a similar form to the multivariate time series input.
+Unstacks the entries of the GNARfit fitted and residual values to return matrices of a similar form to the multivariate time series input.
 }
 \arguments{
-\item{GNARobj}{the output from the \link[GNAR]{GNARfit} or \link[GNAR]{GNARpredict} function}
+\item{GNARobj}{the output from the \link[GNAR]{GNARfit} function}
 \item{nnodes}{the number of nodes in the original network time series}
 }
 \details{
@@ -20,6 +20,5 @@ This function also replaces the NAs that were removed in fitting.
 }
 \examples{
 #Get residual and fitted matrices from GNARpredict fit of fiveVTS
-data(fiveNode)
 residToMat()
 }

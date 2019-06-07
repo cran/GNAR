@@ -32,14 +32,13 @@ See \link[GNAR]{is.GNARnet} for \code{GNARnet} object information and example co
 \item{mod}{the \code{lm} output from fitting the GNAR model.}
 \item{y}{the original response values, with NAs left in.}
 \item{dd}{the output of \code{GNARdesign} containing the design matrix, with NAs left in.}
-\item{frbic}{inputs to the \code{GNARfit} function.}
+\item{frbic}{inputs to other \code{GNAR} functions.}
 }
 \references{Knight, M.I., Nunes, M.A. and Nason, G.P. Modelling, detrending and decorrelation of network time series.
 	\href{https://arxiv.org/abs/1603.03221}{arXiv preprint}.
 }
 \examples{
 #Fit the GNAR(2,[1,1]) model to the fiveVTS data
-data(fiveNode)
 GNARfit()
 
 #Convert the residuals to matrix form

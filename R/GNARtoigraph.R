@@ -1,6 +1,6 @@
 GNARtoigraph<- function(net=GNAR::fiveNet, stage=1, normalise=FALSE){
   stopifnot(is.GNARnet(net))
-  weimat <- GNARtoWMat(net=net, stage=stage, normalise=normalise)
+  weimat <- as.matrix(x=net, stage=stage, normalise=normalise)
   #set as undirected igraph if adjacency matrix is symmetric
   if(all(isSymmetric(weimat))){
     tmp <- graph.adjacency(weimat, mode="undirected", weighted=TRUE)

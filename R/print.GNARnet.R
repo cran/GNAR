@@ -1,5 +1,13 @@
 print.GNARnet <- function(x,...){
   stopifnot(is.GNARnet(x))
+  dotarg <- list(...)
+  if(length(dotarg)!=0){
+    if(!is.null(names(dotarg))){
+      warning("... not used here, input(s) ", paste(names(dotarg), collapse=", "), " ignored")
+    }else{
+      warning("... not used here, input(s) ", paste(dotarg, collapse=", "), " ignored")
+    }
+  }
   cat("GNARnet with", length(x$edges), "nodes", "\n")
   cat("edges:")
   edgect <- 0

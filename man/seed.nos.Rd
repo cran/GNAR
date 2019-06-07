@@ -11,7 +11,6 @@ Seed numbers for reproducible random graphs.
 \code{seed.nos} is a vector of length 10,000 containing integers.
 }
 \examples{
-data(gdp)
 g <- seedToNet(seed.nos[1], nnodes=35, graph.prob=0.15)
 plot(g, vertex.label=colnames(gdpVTS), vertex.size=0)
 }

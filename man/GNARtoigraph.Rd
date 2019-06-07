@@ -20,6 +20,5 @@ With normalisation this is a non-invertible transform. See \link[GNAR]{NofNeighb
 }
 \examples{
 #fiveNet as an igraph object
-data(fiveNode)
 GNARtoigraph()
 }

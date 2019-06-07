@@ -8,7 +8,7 @@
 \code{print.GNARfit} prints model, call, and coefficients of a GNARfit object.
 }
 \arguments{
-\item{x}{the output of a GNARfit or GNARpredict call}
+\item{x}{the output of a \link[GNAR]{GNARfit} call}
 \item{...}{additional arguments, unused here.}
 }
 \details{
@@ -16,6 +16,5 @@ S3 method for class "GNARfit".
 }
 \examples{
 #print the information of the fiveNode GNAR fit
-data(fiveNode)
 print(GNARfit())
 }

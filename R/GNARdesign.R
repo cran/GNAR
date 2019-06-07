@@ -10,6 +10,9 @@ GNARdesign <- function (vts = GNAR::fiveVTS, net = GNAR::fiveNet, alphaOrder = 2
   stopifnot(floor(betaOrder) == betaOrder)
   if(!is.null(fact.var)){
     stopifnot(length(fact.var) == length(net$edges))
+    if(!globalalpha){
+      stop("Use factors OR individual alphas")
+    }
     # if(sum(fact.var %in% c(0,1))!=length(fact.var)){
     #   cat("More than two (0/1) factor variables not yet supported")
     # }
@@ -161,23 +164,25 @@ GNARdesign <- function (vts = GNAR::fiveVTS, net = GNAR::fiveNet, alphaOrder = 2
     if(length(facun)==1){
       return(dmat)
     }else{
-      dmcol <- ncol(dmat)
-      dmatex <- dmat
-      exnames <- paste(colnames(dmat), " '",facun[1],"'", sep="")
-      for(ii in 2:length(facun)){ #duplicate matrix columns
-        dmatex <- cbind(dmatex, dmat)
-        #change names to reflect factors
-        exnames <- c(exnames, paste(colnames(dmat), " '",facun[ii], "'", sep=""))
-      }
+        dmcol <- ncol(dmat)
+        dmatex <- dmat
+        exnames <- paste(colnames(dmat), " '",facun[1],"'", sep="")
+        for(ii in 2:length(facun)){ #duplicate matrix columns
+          dmatex <- cbind(dmatex, dmat)
+          #change names to reflect factors
+          exnames <- c(exnames, paste(colnames(dmat), " '",facun[ii], "'", sep=""))
+        }
 
-      #for each unique factor, set other entries to 0
+        #for each unique factor, set other entries to 0
 
-      for(ii in 1:length(facun)){
-        dmatex[fact.var != facun[ii], ((ii-1)* dmcol + (1:dmcol))] <- 0
-      }
+        for(ii in 1:length(facun)){
+          dmatex[fact.var != facun[ii], ((ii-1)* dmcol + (1:dmcol))] <- 0
+        }
 
 
-      colnames(dmatex) <- exnames
+        colnames(dmatex) <- exnames
+
+
 
       return(dmatex)
     }

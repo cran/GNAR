@@ -28,6 +28,5 @@ Parameter lists should not be NULL, set unused parameters to be zero. See \link[
 }
 \examples{
 #Simulate a GNAR(1,[1]) process with the fiveNet network
-data(fiveNode)
 GNARsim()
 }

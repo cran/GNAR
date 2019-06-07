@@ -16,6 +16,5 @@ S3 method for class "GNARnet".
 }
 \examples{
 #Plot fiveNet
-data(fiveNode)
-plot.GNARnet(fiveNet)
+plot(fiveNet)
 }

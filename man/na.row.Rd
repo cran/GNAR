@@ -16,6 +16,5 @@ Returns a vector with elements TRUE/FALSE identifying which rows contain NA elem
 }
 \examples{
 #Check if there are and NAs in fiveVTS
-data(fiveNode)
 na.row(fiveVTS)
 }

@@ -8,7 +8,7 @@
 \code{coef.GNARfit} returns the vector of coefficients from a GNARfit object.
 }
 \arguments{
-\item{object}{the output of a GNARfit or GNARpredict call}
+\item{object}{the output of a \link[GNAR]{GNARfit} call}
 \item{...}{additional arguments, unused here.}
 }
 \details{
@@ -19,6 +19,5 @@ S3 method for class "GNARfit".
 }
 \examples{
 #get the coefficients of the fiveNode data GNAR fit
-data(fiveNode)
 coef(GNARfit())
 }

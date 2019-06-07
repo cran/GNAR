@@ -18,6 +18,5 @@ The values in the \code{$dist} list are the reciprocal of the values from the we
 }
 \examples{
 #Convert fiveNet to igraph and back again
-data(fiveNode)
 igraphtoGNAR(GNARtoigraph(fiveNet))
 }

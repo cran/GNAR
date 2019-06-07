@@ -8,7 +8,7 @@
 \code{fitted.GNARfit} returns the fitted values of a GNARfit object as a matrix.
 }
 \arguments{
-\item{object}{the output of a GNARfit or GNARpredict call}
+\item{object}{the output of a \link[GNAR]{GNARfit} call}
 \item{...}{additional arguments, unused here.}
 }
 \details{
@@ -19,6 +19,5 @@ S3 method for class "GNARfit".
 }
 \examples{
 #get the fitted values of the fiveNode GNAR fit
-data(fiveNode)
 fitted(GNARfit())
 }

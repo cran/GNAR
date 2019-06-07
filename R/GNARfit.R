@@ -28,7 +28,7 @@ GNARfit <- function(vts=GNAR::fiveVTS, net=GNAR::fiveNet, alphaOrder=2, betaOrde
   #cat("Note: input net should contain distances (not weights)")
   #end of input checks
   frbic <- list(nnodes=length(net$edges),alphas.in=alphaOrder,betas.in=betaOrder,fact.var=fact.var,
-                globalalpha=globalalpha, xtsp=tsp(vts))
+                globalalpha=globalalpha, xtsp=tsp(vts), time.in=nrow(vts), net.in=net, final.in=vts[(nrow(vts)-alphaOrder+1):nrow(vts),])
   dmat <- GNARdesign(vts=vts, net=net, alphaOrder=alphaOrder, betaOrder=betaOrder, fact.var=fact.var,
                      globalalpha=globalalpha, tvnets=tvnets, netsstart=netsstart)
   if(ErrorIfNoNei){

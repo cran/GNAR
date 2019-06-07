@@ -16,7 +16,7 @@ GNARsim <- function(n=200, net=GNAR::fiveNet, alphaParams=list(c(rep(0.2,5))), b
   nei.mats <- vector(mode="list", length=max.nei)
   #create weight matrices for neighbours
   for(ii in 1:max.nei){
-    nei.mats[[ii]] <- GNARtoWMat(net=net, stage=ii, normalise=TRUE)
+    nei.mats[[ii]] <- as.matrix(x=net, stage=ii, normalise=TRUE)
     if(sum(nei.mats[[ii]])==0){
       warning("beta order too large for network, neighbour set ",ii," is empty")
     }
@@ -29,7 +29,6 @@ GNARsim <- function(n=200, net=GNAR::fiveNet, alphaParams=list(c(rep(0.2,5))), b
   #print(length(alphaParams))
 
   xx.init <- matrix(rnorm(nnodes*ntimedep, mean=0, sd=sigma), nrow=ntimedep, ncol=nnodes)
-  #not sure how long burn-in may be for this process, so overgen to start with
 
   xx.gen <- matrix(NA, nrow=n+50, ncol=nnodes)
   xx.gen[1:ntimedep,] <- xx.init

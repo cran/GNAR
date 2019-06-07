@@ -23,6 +23,5 @@ Creates the design matrix necessary for fitting the GNAR model.
 }
 \examples{
 #Design matrix to fit GNAR(2,[1,1]) to the fiveVTS data
-data(fiveNode)
 GNARdesign()
 }

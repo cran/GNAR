@@ -1,4 +1,5 @@
-GNARtoWMat <- function(net=GNAR::fiveNet, stage=1, normalise=FALSE){
+as.matrix.GNARnet <- function(x, stage=1, normalise=FALSE, ...){
+  net <- x
   stopifnot(is.GNARnet(net))
   tmp.mat <- matrix(0, nrow=length(net$edges), ncol=length(net$edges))
   for(ii in 1:length(net$edges)){

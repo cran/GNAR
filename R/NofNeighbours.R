@@ -46,7 +46,7 @@ NofNeighbours <- function(node=1, stage=2, net=GNAR::fiveNet){
           }
 
           tot.wei[[ii]] <- rep(NA, length=length(tot.nei[[ii]]))
-          if((length(tot.nei[[ii]])>0)&&(!is.na(tot.nei[[ii]]))){
+          if((length(tot.nei[[ii]])>0)&&(!is.na(tot.nei[[ii]][1]))){
             for(jj in 1:length(tot.nei[[ii]])){
               tot.wei[[ii]][jj] <- min(tmp.wei[tmp.nei==tot.nei[[ii]][jj]])
             }

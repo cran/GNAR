@@ -1,16 +1,29 @@
-exportPattern("^[[:alpha:]]+")
+export("as.GNARnet", "GNARdesign", "GNARfit", "GNARsim", "GNARtoigraph",
+       "igraphtoGNAR", "is.GNARfit", "is.GNARnet", "matrixtoGNAR",
+       "na.row", "NofNeighbours", "residToMat", "seedToNet", "windnetplot")
 
+S3method(AIC, GNARfit)
+S3method(as.matrix, GNARnet)
+S3method(BIC, GNARfit)
 S3method(coef, GNARfit)
 S3method(fitted, GNARfit)
-S3method(print, GNARfit)
-S3method(residuals, GNARfit)
-S3method(summary, GNARfit)
+S3method(logLik, GNARfit)
+S3method(nobs, GNARfit)
 S3method(plot, GNARnet)
+S3method(predict, GNARfit)
+S3method(print, GNARfit)
 S3method(print, GNARnet)
+S3method(residuals, GNARfit)
+S3method(simulate, GNARfit)
+S3method(summary, GNARfit)
 S3method(summary, GNARnet)
+S3method(vcov, GNARfit)
 
 import(igraph)
 importFrom("wordcloud", "wordlayout")
 importFrom("graphics", "plot")
-importFrom("stats", "as.ts", "coef", "lm", "rbinom", "residuals", "rnorm", "runif", "ts", "tsp")
+importFrom("stats", "AIC", "as.ts", "BIC", "coef", "lm", "nobs",
+           "rbinom", "residuals", "rnorm", "runif", "sigma", "simulate",
+           "ts", "tsp", "vcov")
+
 

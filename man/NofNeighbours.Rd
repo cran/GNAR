@@ -21,6 +21,5 @@ Note that the distances are calculated as the sum along the shortest path; do no
 }
 \examples{
 #First and second stage neighbours of node 1 in fiveNet
-data(fiveNode)
 NofNeighbours()
 }
