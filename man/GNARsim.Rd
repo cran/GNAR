@@ -24,7 +24,8 @@ Parameter lists should not be NULL, set unused parameters to be zero. See \link[
 \code{GNARsim} returns the multivariate time series as a \link[stats]{ts} object, with \code{n} rows and a column for each of the nodes in the network.
 }
 \references{Knight, M.I., Nunes, M.A. and Nason, G.P. Modelling, detrending and decorrelation of network time series.
-	\href{https://arxiv.org/abs/1603.03221}{arXiv preprint}.
+	\href{https://arxiv.org/abs/1603.03221}{arXiv preprint}.\cr\cr
+Knight, M.I., Leeming, K., Nason, G.P. and Nunes, M. A. (2019) Generalised Network Autoregressive Processes and the GNAR package. \emph{Journal of Statistical Software (to appear)}.
 }
 \examples{
 #Simulate a GNAR(1,[1]) process with the fiveNet network

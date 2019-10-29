@@ -1,8 +1,8 @@
 Package: GNAR
 Type: Package
 Title: Methods for Fitting Network Time Series Models
-Version: 0.3.6
-Date: 2019-06-07
+Version: 1.0
+Date: 2019-10-29
 Author: Kathryn Leeming [aut],
   Guy Nason [aut],
   Matt Nunes [aut, cre],
@@ -16,6 +16,6 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
-Packaged: 2019-06-07 12:12:27 UTC; man54
+Packaged: 2019-10-29 16:11:53 UTC; man54
 Repository: CRAN
-Date/Publication: 2019-06-07 17:40:10 UTC
+Date/Publication: 2019-10-29 16:30:03 UTC
