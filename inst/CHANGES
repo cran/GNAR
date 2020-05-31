@@ -6,3 +6,11 @@
 0.3.2: Added S3 method logLik
 0.3.3: Removed GNARpredict and uses in other functions/help pages. Added warnings to S3 methods where additional arguments (...) are ignored.
 0.3.4: Changed NAMESPACE to export non-S3 functions
+
+2.0.0: matrixtoGNAR - negatives and self loops removed (set to zero before converting). List has NULLs for no edges.
+	is.GNARnet - negatives, zero distances and self loops return FALSE
+	as.GNARnet - don't allow negatives, zero distances and self loops
+	GNARdesign - invert the network if its not symmetric, added check for NA in neighbours to give zero entries in matrix
+	simulate.GNARfit - for future simulations the network is inverted if not symmetric (otherwise GNARsim is called)
+	GNARsim - invert the network if its not symmetric
+	NofNeighbours - made more robust to edges NULLs

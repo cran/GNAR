@@ -29,6 +29,11 @@ GNARdesign <- function (vts = GNAR::fiveVTS, net = GNAR::fiveNet, alphaOrder = 2
   }
   stopifnot(is.null(tvnets))
   #cat("Note: input net should contain distances (not weights)")
+  #flip network so that NofNeighbours gives into node information
+  netmat <- as.matrix(net, normalise=FALSE)
+  if(!isSymmetric(netmat)){
+    net <- as.GNARnet(t(netmat))
+  }
   parNames <- parLoc <- NULL
   for (jj in 1:alphaOrder) {
     if(globalalpha){
@@ -85,7 +90,7 @@ GNARdesign <- function (vts = GNAR::fiveVTS, net = GNAR::fiveNet, alphaOrder = 2
         Nei <- NofNei$edges
         Wei <- NofNei$dist
         if ((!is.null(Nei)) & (length(Nei) > 0)) {
-          if (!is.null(Nei[[1]])) {
+          if (!is.null(Nei[[1]])&!is.na(Nei[[1]][1])) {
             Wei <- lapply(Wei, function(x){1/(x*sum(1/x))})
             # for (jj in 1:length(Wei)) {
             #   inv.dist <- 1/Wei[[jj]]
@@ -94,8 +99,8 @@ GNARdesign <- function (vts = GNAR::fiveVTS, net = GNAR::fiveNet, alphaOrder = 2
             for (bb in 1:sum(betaOrder)) {
               betaLoc <- which(parLoc == "b")[bb]
               if (length(Nei[[betaN[bb]]]) > 1) {
-                #print(paste("node", ii, "betaN[bb]", betaN[bb]))
-                #print("In length(Nei[[betaN[bb]]]) > 1")
+                # print(paste("node", ii, "betaN[bb]", betaN[bb]))
+                # print("In length(Nei[[betaN[bb]]]) > 1")
                 vts.cut <- vts[((maxOrder + 1 - betaTimes[bb]):(predt +
                                                                   (maxOrder - betaTimes[bb]))), Nei[[betaN[bb]]]]
                 for (kk in 1:nrow(vts.cut)) {
@@ -119,11 +124,11 @@ GNARdesign <- function (vts = GNAR::fiveVTS, net = GNAR::fiveNet, alphaOrder = 2
                                                 ii)), betaLoc] <- vts.cut %*% Wei[[betaN[bb]]]
               }
               else {
-                #print(paste("node", ii, "betaN[bb]", betaN[bb]))
-                #print("In length(Nei[[betaN[bb]]]) > 1 else")
+                # print(paste("node", ii, "betaN[bb]", betaN[bb]))
+                # print("In length(Nei[[betaN[bb]]]) > 1 else")
                 if ((length(Nei[[betaN[bb]]]) == 1) &
                     (!is.na(Nei[[betaN[bb]]]))) {
-                  #print("In (length(Nei[[betaN[bb]]]) == 1) & (!is.na(Nei[[betaN[bb]]]))")
+                  # print("In (length(Nei[[betaN[bb]]]) == 1) & (!is.na(Nei[[betaN[bb]]]))")
                   vts.cut <- vts[((maxOrder +
                                      1 - betaTimes[bb]):(predt + (maxOrder -
                                                                     betaTimes[bb]))), Nei[[betaN[bb]]]]

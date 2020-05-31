@@ -15,6 +15,11 @@ GNARsim <- function(n=200, net=GNAR::fiveNet, alphaParams=list(c(rep(0.2,5))), b
   max.nei <- max(unlist(lapply(betaParams, length)))
   nei.mats <- vector(mode="list", length=max.nei)
   #create weight matrices for neighbours
+  #flip network so that NofNeighbours gives into node information
+  netmat <- as.matrix(net, normalise=FALSE)
+  if(!isSymmetric(netmat)){
+    net <- as.GNARnet(t(netmat))
+  }
   for(ii in 1:max.nei){
     nei.mats[[ii]] <- as.matrix(x=net, stage=ii, normalise=TRUE)
     if(sum(nei.mats[[ii]])==0){

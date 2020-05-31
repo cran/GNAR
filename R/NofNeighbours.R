@@ -6,8 +6,11 @@ NofNeighbours <- function(node=1, stage=2, net=GNAR::fiveNet){
   tot.nei <- vector(mode="list", length=stage)
   tot.wei <- vector(mode="list", length=stage)
   #first get neighbours and weights
-  tot.nei[[1]] <- net$edges[[node]]
-  tot.wei[[1]] <- net$dist[[node]]
+  if(!is.null(net$edges[[node]])){
+    tot.nei[[1]] <- net$edges[[node]]
+    tot.wei[[1]] <- net$dist[[node]]
+  }
+
   #stopifnot(length(tot.nei[[1]])==length(tot.wei[[1]]))
 
   if(stage>1){
@@ -56,6 +59,8 @@ NofNeighbours <- function(node=1, stage=2, net=GNAR::fiveNet){
         }else{
           tot.nei[[ii]] <- tot.wei[[ii]] <- NA
         }
+      }else{
+        tot.nei[[ii]] <- tot.wei[[ii]] <- NA
       }
     }
   }

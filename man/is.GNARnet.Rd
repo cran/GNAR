@@ -18,9 +18,11 @@ The \code{is.GNARnet} function checks whether the network passes a series of tes
   \item Is it a list containing $edges and $dist
   \item Are the $edges and $dist lists of the same length
   \item Are each of the elements of $edges the same length as the corresponding $dist element
-  \item Do the edges only contain valid entries, 1,...,nnodes
+  \item Do the edges only contain valid entries, 1,...,nnodes (or \code{NULL})
   \item Is it labelled as \code{GNARnet} class
   \item Are no duplicate edges present
+  \item Are all distances positive
+  \item Are there no self-loops in the network
 }
 The \code{as.GNARnet} function converts \link[igraph]{igraph} objects to GNARnet form, other possible inputs are adjacency matrices, and lists with \code{$edges} and \code{$dist} entries of the correct form.
 }

@@ -73,8 +73,15 @@ simulate.GNARfit <- function(object, nsim=object$frbic$time.in, seed=NULL,
     max.nei <- max(unlist(lapply(betaout, length)))
     nei.mats <- vector(mode="list", length=max.nei)
     #create weight matrices for neighbours
+    #flip network so that NofNeighbours gives into node information
+    netmat <- as.matrix(object$frbic$net.in, normalise=FALSE)
+    if(!isSymmetric(netmat)){
+      net <- as.GNARnet(t(netmat))
+    }else{
+      net <- object$frbic$net.in
+    }
     for(ii in 1:max.nei){
-      nei.mats[[ii]] <- as.matrix(x=object$frbic$net.in, stage=ii, normalise=TRUE)
+      nei.mats[[ii]] <- as.matrix(x=net, stage=ii, normalise=TRUE)
       if(sum(nei.mats[[ii]])==0){
         warning("beta order too large for network, neighbour set ",ii," is empty")
       }
