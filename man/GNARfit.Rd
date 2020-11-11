@@ -36,7 +36,7 @@ See \link[GNAR]{is.GNARnet} for \code{GNARnet} object information and example co
 }
 \references{Knight, M.I., Nunes, M.A. and Nason, G.P. Modelling, detrending and decorrelation of network time series.
 	\href{https://arxiv.org/abs/1603.03221}{arXiv preprint}.\cr\cr
-Knight, M.I., Leeming, K., Nason, G.P. (2019) and Nunes, M. A. Generalised Network Autoregressive Processes and the GNAR package. \emph{Journal of Statistical Software (to appear)}.
+Knight, M.I., Leeming, K., Nason, G.P. and Nunes, M. A. (2020) Generalised Network Autoregressive Processes and the GNAR package. \emph{Journal of Statistical Software}, \bold{96} (5), 1--36.
 }
 \examples{
 #Fit the GNAR(2,[1,1]) model to the fiveVTS data

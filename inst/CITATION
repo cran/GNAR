@@ -1,0 +1,23 @@
+bibentry(bibtype = "Article",
+  title        = "Generalized Network Autoregressive Processes and the {GNAR} Package",
+  author       = c(person(given = "Marina",
+                          family = "Knight",
+                          email = "marina.knight@york.ac.uk"),
+                   person(given = "Kathryn",
+                          family = "Leeming",
+                          email = "kathryn.leeming@warwick.ac.uk"),
+                   person(given = "Guy",
+                          family = "Nason"),
+                   person(given = "Matthew",
+                          family = "Nunes",
+                          email = "m.a.nunes@bath.ac.uk")),
+  journal      = "Journal of Statistical Software",
+  year         = "2020",
+  volume       = "96",
+  number       = "5",
+  pages        = "1--36",
+  doi          = "10.18637/jss.v096.i05",
+
+  header       = "To cite GNAR in publications use:"
+)
+
