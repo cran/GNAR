@@ -17,3 +17,8 @@
 	GNARsim - invert the network if its not symmetric
 	NofNeighbours - made more robust to edges NULLs
 1.1.1: Updated CITATION and references in line with JSS publication (10/11/20)
+1.1.2: Updated package to include GNARX code in GNARXfit, GNARXdesign and associated help files.  Updated author list accordingly (added James Wei)
+       Updated licence URL for wind data
+       Added import of "vec" from matrixcalc, export of GNARXdesign, GNARXfit
+	Updated GNARsim.Rd slightly for more information about arguments	
+	Added GNARXsim.R and GNARXsim.Rd

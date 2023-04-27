@@ -22,6 +22,10 @@ Smaller AIC values correspond to better fit.
 \value{
 A numeric value corresponding to the \code{AIC} (or other criterion if \code{k} is set to something other than \code{2}).
 }
+\note{
+Occasionally it has been observed that when the forecast horizon has been set too high, this can result in \code{NA} AIC values.  This can be resolved by reducing the forecast horizon. 
+If package users find this problem persists or they experience any other unexpected behaviour, please contact the package maintainer.
+}
 \examples{
 #AIC for two different GNAR fits for fiveNet data
 #GNAR(2,[1,1])

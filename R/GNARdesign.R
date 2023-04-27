@@ -110,13 +110,10 @@ GNARdesign <- function (vts = GNAR::fiveVTS, net = GNAR::fiveNet, alphaOrder = 2
                       vts.cut[kk, ] <- 0
                     }
                     else {
-                      new.wei <- Wei[[betaN[bb]]][which(!is.na(vts.cut[kk,
-                                                                       ]))]
+                      new.wei <- Wei[[betaN[bb]]][which(!is.na(vts.cut[kk, ]))]
                       new.wei <- new.wei/sum(new.wei)
-                      sub.val <- vts.cut[kk, which(!is.na(vts.cut[kk,
-                                                                  ]))] %*% new.wei
-                      vts.cut[kk, which(is.na(vts.cut[kk,
-                                                      ]))] <- sub.val
+                      sub.val <- vts.cut[kk, which(!is.na(vts.cut[kk, ]))] %*% new.wei
+                      vts.cut[kk, which(is.na(vts.cut[kk, ]))] <- sub.val
                     }
                   }
                 }

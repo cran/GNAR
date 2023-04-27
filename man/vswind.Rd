@@ -37,7 +37,7 @@ two columns providing the x and y coordinates of the weather stations.
 	The base data were obtained from the
 	\url{http://wow.metoffice.gov.uk} UK Met Office WeatherObservationsWebsite
 	distributed under the UK Open Government License
-	\url{http://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/}
+	\url{https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/open-government-licence.htm}
 	Contains public sector information licensed under the Open Goverment
 	Licence v1.0.
 
