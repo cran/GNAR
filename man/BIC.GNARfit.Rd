@@ -19,7 +19,7 @@ Function calculating BIC for \code{GNARfit} models.
 Smaller BIC values correspond to better fit.
 }
 \value{
-A numeric value corresponding to the \code{BIC}.
+A numeric value corresponding to the \code{BIC}.  Note that this is the ``time-normalised'' value of the AIC for the GNAR model, and also removes any proportionality constants in the calculation.
 }
 \examples{
 #BIC for two different GNAR fits for fiveNet data

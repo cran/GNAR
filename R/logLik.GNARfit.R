@@ -14,7 +14,7 @@ logLik.GNARfit <- function(object,...){
   Sigma <- crossprod(eps)/t
   stopifnot(floor(t)==t)
   stopifnot(floor(n)==n)
-  ll <- -(t*n) * log(2*pi)/2 - (t/2)*log(det(Sigma)) + sum(diag(eps %*% solve(Sigma) %*% t(eps)))/2
+  ll <- -(t*n) * log(2*pi)/2 - (t/2)*log(det(Sigma)) - sum(diag(eps %*% solve(Sigma) %*% t(eps)))/2
   class(ll) <- "logLik"
   attr(ll, "df") <- length(coef(object))
   return(ll)

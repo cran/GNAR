@@ -22,3 +22,10 @@
        Added import of "vec" from matrixcalc, export of GNARXdesign, GNARXfit
 	Updated GNARsim.Rd slightly for more information about arguments	
 	Added GNARXsim.R and GNARXsim.Rd
+1.1.3: Corrected "+" typo in logLik.GNARfit
+	Edited AIC and BIC documentation files to clarify that the values are without proportionality constants, and are time-normalised versions.
+	Added NHS trust hospital admissions data (network and time series)
+	Added corbit and Wagner functions and documentation files.  Note corbit_plot, wagner_plot and data documentation files include \dontrun due to computation time
+	Added relevant imports and exports for corbit functions into NAMESPACE
+	Changed NAMESPACE to move away from using `Depends'.
+	Changed DESCRIPTION to reflect additional authors, imports and associated article.

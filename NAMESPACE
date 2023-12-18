@@ -2,7 +2,14 @@ export("as.GNARnet", "GNARdesign", "GNARfit", "GNARsim", "GNARtoigraph",
        "igraphtoGNAR", "is.GNARfit", "is.GNARnet", "matrixtoGNAR",
        "na.row", "NofNeighbours", "residToMat", "seedToNet", "windnetplot")
 
+# GNARX 
 export("GNARXdesign", "GNARXfit", "GNARXsim")
+
+# CORBIT
+export("active_node_plot", "corbit_plot", "cross_correlation_plot",
+	"get_k_stages_adjacency_tensor",
+	"local_relevance_plot", "nacf", "node_relevance_plot", "pnacf",
+	"wagner_plot", "weights_matrix")
 
 S3method(AIC, GNARfit)
 S3method(as.matrix, GNARnet)
@@ -21,13 +28,24 @@ S3method(summary, GNARfit)
 S3method(summary, GNARnet)
 S3method(vcov, GNARfit)
 
-
-
 import(igraph)
-importFrom("wordcloud", "wordlayout")
+
 importFrom("graphics", "plot")
 importFrom("stats", "AIC", "as.ts", "BIC", "coef", "lm", "nobs",
            "rbinom", "residuals", "rnorm", "runif", "sigma", "simulate",
            "ts", "tsp", "vcov")
+importFrom("wordcloud", "wordlayout")
 
+# GNARX
 importFrom("matrixcalc","vec")
+
+#CORBIT
+importFrom("ggforce", "geom_circle")
+importFrom("ggplot2", "aes", "annotate", "coord_fixed", "coord_flip", "element_blank", "element_text", "geom_point", "geom_raster", "ggplot", "labs", "theme", "theme_void", "geom_bar", "geom_col")
+importFrom("ggpubr", "ggarrange")
+importFrom("grid", "unit")
+#importFrom("igraph", "distances", "graph_from_adjacency_matrix")
+importFrom("rlang", ".data")
+#importFrom("stats", "cor", "lm", "residuals", "rnorm", "sd")
+importFrom("stats", "cor", "sd")
+importFrom("viridis", "scale_fill_viridis", "scale_color_viridis")

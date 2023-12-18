@@ -1,23 +1,27 @@
 Package: GNAR
 Type: Package
 Title: Methods for Fitting Network Time Series Models
-Version: 1.1.2
-Date: 2023-04-27
+Version: 1.1.3
+Date: 2023-12-16
 Author: Kathryn Leeming [aut],
   Guy Nason [aut],
   Matt Nunes [aut, cre],
   Marina Knight [ctb],
-  James Wei [aut]
-Authors@R: c(person("Kathryn", "Leeming", role="aut"), person("Guy","Nason",role="aut"), person("Matt",
-        "Nunes", role=c("aut","cre"),email="nunesrpackages@gmail.com"), person("Marina","Knight",role="ctb"), person("James", "Wei", role="aut"))
+  James Wei [aut],
+  Daniel Salnikov [aut],
+  Mario Cortina Borja [ctb]
+Authors@R: c(person("Kathryn", "Leeming", role="aut"), person("Guy","Nason",role="aut", email="g.nason@imperial.ac.uk"), person("Matt",
+        "Nunes", role=c("aut","cre"),email="nunesrpackages@gmail.com"), person("Marina","Knight",role="ctb"), person("James", "Wei", role="aut"), person("Daniel", "Salnikov",
+        role=c("aut"),email="d.salnikov22@imperial.ac.uk"), person("Mario", "Cortina Borja", role=c("ctb"),email="m.cortina@ucl.ac.uk"))
 Maintainer: Matt Nunes <nunesrpackages@gmail.com>
-Description: Simulation of, and fitting models for, Generalised Network Autoregressive (GNAR) time series models which take account of network structure, potentially with exogenous variables.  Such models are described in Knight et al. (2020) <doi:10.18637/jss.v096.i05> and Nason and Wei (2021) <doi:10.1111/rssa.12875>.
-Depends: R (>= 2.10), igraph, wordcloud
-Imports: matrixcalc
+Description: Simulation of, and fitting models for, Generalised Network Autoregressive (GNAR) time series models which take account of network structure, potentially with exogenous variables.  Such models are described in Knight et al. (2020) <doi:10.18637/jss.v096.i05> and Nason and Wei (2021) <doi:10.1111/rssa.12875>.  Diagnostic tools for GNAR(X) models can be found in Nason et al (2023) <arXiv:2312.00530>.
+Depends: R(>= 3.5.0)
+Imports: ggforce, ggplot2, ggpubr, grid, igraph, matrixcalc, rlang,
+        stats, viridis, wordcloud
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
-Packaged: 2023-04-27 16:22:21 UTC; matt
+Packaged: 2023-12-18 10:15:22 UTC; man54
 Repository: CRAN
-Date/Publication: 2023-04-27 20:10:05 UTC
+Date/Publication: 2023-12-18 13:40:08 UTC

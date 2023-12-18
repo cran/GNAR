@@ -20,7 +20,7 @@ Function calculating AIC for \code{GNARfit} models.
 Smaller AIC values correspond to better fit.
 }
 \value{
-A numeric value corresponding to the \code{AIC} (or other criterion if \code{k} is set to something other than \code{2}).
+A numeric value corresponding to the \code{AIC} (or other criterion if \code{k} is set to something other than \code{2}).  Note that the value returned is the ``time-normalised'' AIC for the GNAR model, and also removes any proportionality constants in the calculation.
 }
 \note{
 Occasionally it has been observed that when the forecast horizon has been set too high, this can result in \code{NA} AIC values.  This can be resolved by reducing the forecast horizon. 
