@@ -188,10 +188,11 @@ latent_emp_covariance <- function(vts) {
   return(out)
 }
 
+
 weights_matrix <- function(network, max_r_stage) {
   W = distances(GNARtoigraph(network))
   if (!is.finite(max(W))) { 
-    warning("Warning the graph is not fully connected, adjusting by removing non-connected nodes from r-stage adjacency sets.\n")
+    cat("Warning the graph is not fully connected, adjusting by removing non-connected nodes from r-stage adjacency sets.")
     W[!is.finite(W)] = 0
     }
   adj_matrix = as.matrix(GNARtoigraph(network))
@@ -205,6 +206,7 @@ weights_matrix <- function(network, max_r_stage) {
   W_norm = normalize_weights(get_k_stages_adjacency_tensor(adj_matrix, max_r_stage), max_r_stage, W)
   return (W_norm)
 }
+
 
 missing_data_adjust_weights <- function(vts, weight_matrix, stages_tensor, max_stage) {
   for (j in 1:ncol(weight_matrix)) {

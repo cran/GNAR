@@ -9,7 +9,7 @@ export("GNARXdesign", "GNARXfit", "GNARXsim")
 export("active_node_plot", "corbit_plot", "cross_correlation_plot",
 	"get_k_stages_adjacency_tensor",
 	"local_relevance_plot", "nacf", "node_relevance_plot", "pnacf",
-	"wagner_plot", "weights_matrix")
+	"r_corbit_plot", "weights_matrix")
 
 S3method(AIC, GNARfit)
 S3method(as.matrix, GNARnet)
@@ -49,3 +49,8 @@ importFrom("rlang", ".data")
 #importFrom("stats", "cor", "lm", "residuals", "rnorm", "sd")
 importFrom("stats", "cor", "sd")
 importFrom("viridis", "scale_fill_viridis", "scale_color_viridis")
+
+#CORBIT UPDATE
+importFrom("ggplot2", "geom_segment", "geom_vline", "scale_x_continuous", "scale_y_continuous")
+importFrom("grDevices", "hcl.colors", "palette")
+importFrom("graphics", "legend", "lines")

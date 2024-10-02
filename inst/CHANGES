@@ -29,3 +29,5 @@
 	Added relevant imports and exports for corbit functions into NAMESPACE
 	Changed NAMESPACE to move away from using `Depends'.
 	Changed DESCRIPTION to reflect additional authors, imports and associated article.
+1.1.4:  Updated Corbit plot functionality and associated help files
+	all references to Wagner changed to R-

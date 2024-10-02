@@ -9,13 +9,14 @@ the number of daily admissions to mechanical ventilation beds in one of
 }
 \format{An object of class GNARnet from the GNAR package}
 
-\source{UK Coronavirus website \url{https://coronavirus.data.gov.uk} }
+\source{UK Coronavirus website \url{https://ukhsa-dashboard.data.gov.uk} }
 \references{
 Nason, G.P., Salnikov, D. and Cortina-Borja, M. (2023) 
 New tools for network time series with an application to COVID-19
 hospitalisations. \url{https://arxiv.org/abs/2312.00530}
 }
-\section{SEE ALSO}{\code{\link{corbit_plot}},\code{\link{NHSTrustMVCAug120.net}}}
+\seealso{\code{\link{corbit_plot}},\code{\link{NHSTrustMVCAug120.net}}}
+
 \examples{
 
 \dontrun{

@@ -114,7 +114,7 @@ get_nacf_values <- function(max_lag, max_stage, weight_matrix, stages_tensor, nt
   nacf_corr_vals = matrix(rep(0, max_lag * max_stage), nrow=max_lag, ncol=max_stage)
   for (s in 1:max_stage) {
     for (h in 1:max_lag) {
-      nacf_corr_vals[h, s] = nacf(h, s, weight_matrix, stages_tensor, nts_data)
+      nacf_corr_vals[h, s] = nacf_edt(h, s, weight_matrix, stages_tensor, nts_data)
     }
   }
   return (nacf_corr_vals)
@@ -125,7 +125,7 @@ get_pnacf_values <- function(max_lag, max_stage, weight_matrix, stages_tensor, n
   nacf_corr_vals = matrix(rep(0, max_lag * max_stage), nrow=max_lag, ncol=max_stage)
   for (s in 1:max_stage) {
     for (h in 1:max_lag) {
-      nacf_corr_vals[h, s] = pnacf(h, s, weight_matrix, stages_tensor, nts_data)
+      nacf_corr_vals[h, s] = pnacf_edt(h, s, weight_matrix, stages_tensor, nts_data)
     }
   }
   return (nacf_corr_vals)

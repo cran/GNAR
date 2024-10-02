@@ -12,7 +12,7 @@ The dimension
 of the matrix is 452x140. The dates and Trust ID codes are stored in
 the dimnames (first and second) respectively.
 }
-\source{UK Coronavirus website \url{https://coronavirus.data.gov.uk} }
+\source{UK Coronavirus website \url{https://ukhsa-dashboard.data.gov.uk} }
 \references{
 Nason, G.P., Salnikov, D. and Cortina-Borja, M. (2023)
 New tools for network time series with an application to COVID-19

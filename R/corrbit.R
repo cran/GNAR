@@ -1,17 +1,15 @@
-#CorrBit plot code
-#Works for nacf values and/or fitted models and/or significance
-#The plan is to exploit the aes capabilities of ggplot to not have to color the graph by ourselves, just need to add the necessary x y 
-#coordinates for the circles and the scatter plot takes care of the rest
-#The correlation is the color aesthetic, blue = -1 and orange = +1
+#Corbit plot code
+
 #The R2 or another model diagnostic will correspond to the size of the circle
 
 
-plot_corbit <-function(corbit_data, max_lag, max_stage, viridis_color_option="viridis", size_option="absolute_val", wagner="no") {
+plot_corbit <-function(corbit_data, max_lag, max_stage, viridis_color_option="viridis", size_option="absolute_val", r_corbit="no") {
   corbit_data = rbind(c(0, 0, 0, 0), corbit_data)
-  if (wagner == "yes") {
+  aux_line_start = sin((max_lag - 1) * 2 * pi / max_lag)
+  if (r_corbit == "yes") {
     label_points = get_circle_points_polar(2 * max_stage + 1, max_lag)
     num_samples = (length(corbit_data[, 1]) - 1) / (max_lag * max_stage) - 1
-    capt_text = paste0("Wagner plot with ", num_samples, " time frames or samples, max lag")
+    capt_text = paste0("R-Corbit plot with ", num_samples, " time frames or samples, max lag")
   } else {
     label_points = get_circle_points_polar(max_stage + 1, max_lag)
     capt_text = "Corbit plot with max lag"
@@ -22,9 +20,9 @@ plot_corbit <-function(corbit_data, max_lag, max_stage, viridis_color_option="vi
     aux_size = 3
     colnames(corbit_data) <- c("x", "y", colnames(corbit_data)[3], paste0("abs(", colnames(corbit_data)[3], ")"))
   }
-  p <- ggplot(corbit_data, aes(x = .data$x, y= .data$y))
-  p + geom_point(aes(color = .data[[colnames(corbit_data)[3]]], size = abs(.data[[colnames(corbit_data)[3]]]))) +
-        scale_color_viridis(option=viridis_color_option) +
+  plot_object <- ggplot(corbit_data, aes(x = .data$x, y = .data$y))
+  print(plot_object + geom_point(aes(color = .data[[colnames(corbit_data)[3]]], size = abs(.data[[colnames(corbit_data)[3]]]))) +
+      scale_color_viridis(option=viridis_color_option) +
         # geom_circle(aes(x0=0, y0=0, r = 1), linetype='dashed', color='blue',
         #            fill='yellow', lwd=1, inherit.aes=FALSE) +
       coord_fixed() + 
@@ -37,10 +35,12 @@ plot_corbit <-function(corbit_data, max_lag, max_stage, viridis_color_option="vi
               axis.title.y = element_blank(), 
               plot.caption = element_text(hjust = 0.5, size = 14, face = "bold")
         ) + 
+      # geom_segment(aes(x = corbit_data[2, 1], y = aux_line_start, xend = label_points[1, 1], yend = (label_points[1, 2] + label_points[max_lag, 2]) / 2), linetype = "dashed") +
       annotate("text", x=label_points[, 1], y=label_points[, 2], label=rownames(data.frame(label_points)), col="black", size = 5) +
       labs(caption = paste(colnames(corbit_data)[3], capt_text, max_lag, "and max path length", max_stage, sep = " " ), 
              color = colnames(corbit_data)[3],
              size = colnames(corbit_data)[4])
+  )
 }
 
 
@@ -54,7 +54,7 @@ get_corbit_data <-function(max_lag, max_stage,  W_norm, stages_tensor, nts_data,
       model_diagnostics = matrix(c(nacf_corbit, rep(0, length(nacf_corbit))), nrow=length(nacf_corbit), ncol = 2)
     }
     corbit_data = data.frame(cbind(get_planet_coordinates(max_lag, max_stage), model_diagnostics))
-    colnames(corbit_data) <- c("x", "y", "pnacf", "R2")
+    colnames(corbit_data) <- c("x", "y", "PNACF", "R2")
   } else {
     nacf_corbit = c(get_nacf_values(max_lag, max_stage, W_norm, stages_tensor, nts_data))
     if (size_option != "absolute_val") {
@@ -64,7 +64,7 @@ get_corbit_data <-function(max_lag, max_stage,  W_norm, stages_tensor, nts_data,
       model_diagnostics = matrix(c(nacf_corbit, rep(0, length(nacf_corbit))), nrow=length(nacf_corbit), ncol = 2)
     }
     corbit_data = data.frame(cbind(get_planet_coordinates(max_lag, max_stage), model_diagnostics))
-    colnames(corbit_data) <- c("x", "y", "nacf", "R2")
+    colnames(corbit_data) <- c("x", "y", "NACF", "R2")
   }
   return (corbit_data)
 }
@@ -79,11 +79,12 @@ get_list_mean <- function(data_list, target_index, target_column) {
 }
 
 
-get_wagner_data <- function(max_lag, max_stage, W_list, stages_list, nts_samples, same_net="yes", partial = "no", centre_option="mean") {
+get_r_corbit_data <- function(max_lag, max_stage, W_list, stages_list, nts_samples, same_net="yes", partial = "no", centre_option="mean") {
   nacf_samples = list()
   if (same_net == "yes") {
   for (i in 1:length(nts_samples)) {
-    nacf_samples <- c(nacf_samples, list(get_corbit_data(max_lag, max_stage, W_list[[1]], stages_list[[1]], 
+    # Changed the list for the same undelrying network
+    nacf_samples <- c(nacf_samples, list(get_corbit_data(max_lag, max_stage, W_list[[i]], stages_list[[1]], 
                                                          nts_samples[[i]], partial = partial)))
   } } else {
     for (i in 1:length(nts_samples)) {
@@ -108,34 +109,15 @@ get_wagner_data <- function(max_lag, max_stage, W_list, stages_list, nts_samples
         }
   }
   model_diagnostics = matrix(c(nacf_values, abs(nacf_values)), nrow=length(nacf_values), ncol = 2)
-  wagner_data = data.frame(cbind(point_coordinates, model_diagnostics))
+  r_corbit_data = data.frame(cbind(point_coordinates, model_diagnostics))
   if (partial == "yes") {
-    colnames(wagner_data) <- c("x", "y", "pnacf", "R2")
+    colnames(r_corbit_data) <- c("x", "y", "pnacf", "R2")
   } else {
-    colnames(wagner_data) <- c("x", "y", "nacf", "R2")
+    colnames(r_corbit_data) <- c("x", "y", "nacf", "R2")
   }
-  wagner_data$x = 2 * wagner_data$x
-  wagner_data$y = 2 * wagner_data$y
-  return (wagner_data)
-}
-
-
-corbit_plot <- function(vts, net, max_lag, max_stage, weight_matrix, viridis_color_option="viridis", size_option="absolute_val", partial="no", wagner="no") {
-  dummy_net = GNARtoigraph(net)
-  adj_mat = as.matrix(dummy_net)
-  net_result = graph_from_adjacency_matrix(adj_mat, 'undirected')
-  stages_tensor = get_k_stages_adjacency_tensor(adj_mat, max_stage)
-  if (missing(weight_matrix)) {
-    W_norm = weights_matrix(net)
-  } else {
-    if (!is.finite(max(distances(weight_matrix)))) { 
-      warning("Warning the graph is not fully connected, adjusting by removing non-connected nodes from r-stage adjacency sets.\n")
-      weight_matrix[!is.finite(weight_matrix)] = 0
-    }
-    W_norm = normalize_weights(stages_tensor, max_stage, weight_matrix)
-  }
-  corbit_data = get_corbit_data(max_lag, max_stage, W_norm, stages_tensor, vts, size_option, partial = partial)
-  plot_corbit(corbit_data, max_lag, max_stage,  viridis_color_option, size_option, wagner=wagner)
+  r_corbit_data$x = 2 * r_corbit_data$x
+  r_corbit_data$y = 2 * r_corbit_data$y
+  return (r_corbit_data)
 }
 
 
@@ -178,33 +160,6 @@ get_weight_matrices <- function(network_list, max_stage, weight_matrices, same_n
 }
 
 
-wagner_plot <- function(vts_frames, network_list, max_lag, max_stage, weight_matrices, frame_names, same_net="no", viridis_color_option="viridis", size_option="absolute_val", partial="no", wagner="yes") {
-  if (missing(frame_names)) {
-    cat("No name for each covariate and/or time slice, using generic names")
-    frame_names = as.character(seq(1:length(vts_frames)))
-  }
-  if (length(frame_names) != length(vts_frames)) {
-    cat("Missing name for slice and/or covariate, using generic names")
-    frame_names = as.character(seq(1:length(vts_frames)))
-  }
-  wagner_stages_weights = get_weight_matrices(network_list = network_list, max_stage = max_stage, weight_matrices = weight_matrices, same_net=same_net)
-  stages_tensor_list = wagner_stages_weights[[1]]
-  weight_matrices_list = wagner_stages_weights[[2]]
-  if (same_net == "yes") {
-    stages_tensor_list = list()
-    weight_matrices_list = list()
-    for (i in 1:length(vts_frames)) {
-      stages_tensor_list = c(stages_tensor_list, list(wagner_stages_weights[[1]]))
-      weight_matrices_list = c(weight_matrices_list, list(wagner_stages_weights[[2]]))
-    }
-  }
-  wagner_plot_data = get_wagner_data(max_lag, max_stage, weight_matrices_list, stages_tensor_list, vts_frames, same_net=same_net, partial = partial)
-  ggarrange(plot_corbit(wagner_plot_data, max_lag, max_stage,  viridis_color_option, size_option, wagner=wagner), 
-            plot_wagner_legend(frame_names, partial=partial), widths = c(2, 0.5),
-            ncol = 2, nrow = 1)
-}
-
-
 get_covariate_weight_matrix <- function(weight_matrix, covariate_criteria=NULL, covariate_column, vts) {
   covariate_matrix = c()
   for (i in 1:nrow(vts)) {
@@ -220,7 +175,7 @@ get_covariate_weight_matrix <- function(weight_matrix, covariate_criteria=NULL, 
 }
 
 
-plot_wagner_legend <- function(frame_names, partial="no") {
+plot_r_corbit_legend <- function(frame_names, partial="no") {
   if (partial=="yes") {
     cap_text = "mean pnacf"
   } else {
